@@ -2,125 +2,125 @@ TLIST = [
     {
 #RX
 #-- rx diy
-        'target' : 'rx-diy-wle5cc',             'target_D' : 'RX_DIY_HIFLY_WLE5CC',
+        'target' : 'rx-wle5cc',             'target_D' : 'RX_HIFLY_WLE5CC',
         'extra_D_list' : ['DEVICE_NAME_SE77RX10'],
-        'appendix' : '-se77rx1.0'
+        'appendix' : '-se77rx10'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28RX12'],
-        'appendix' : '-se28rx1.2'
+        'appendix' : '-se28rx12'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22RX12'],
-        'appendix' : '-se22rx1.2'
+        'appendix' : '-se22rx12'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28RX21'],
-        'appendix' : '-se28rx2.1'
+        'appendix' : '-se28rx21'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_DE28RX21'],
-        'appendix' : '-de28rx2.1'
+        'appendix' : '-de28rx21'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22RX21'],
-        'appendix' : '-se22rx2.1'
+        'appendix' : '-se22rx21'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE220RX21'],
-        'appendix' : '-se220rx2.1'
+        'appendix' : '-se220rx21'
     },{
-        'target' : 'rx-diy-f103cb',             'target_D' : 'RX_DIY_HIFLY_F103CB',
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE32RX21'],
-        'appendix' : '-se32rx2.1'
+        'appendix' : '-se32rx21'
     },{
 #TX
 #-- tx diy
-        'target' : 'tx-diy-wle5cc',             'target_D' : 'TX_DIY_HIFLY_WLE5CC',
+        'target' : 'tx-wle5cc',             'target_D' : 'TX_HIFLY_WLE5CC',
         'extra_D_list' : ['DEVICE_NAME_SE77TX10'],
-        'appendix' : '-se77tx1.0'
+        'appendix' : '-se77tx10'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX12'],
-        'appendix' : '-se28tx1.2'
+        'appendix' : '-se28tx12'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX12S'],
-        'appendix' : '-se28tx1.2s'
+        'appendix' : '-se28tx12s'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX20','MLRS_FEATURE_OLED'],
-        'appendix' : '-se28tx2.0'
+        'appendix' : '-se28tx20'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE220TX20','MLRS_FEATURE_OLED'],
-        'appendix' : '-se220tx2.0'
+        'appendix' : '-se220tx20'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22TX20','MLRS_FEATURE_OLED'],
-        'appendix' : '-se22tx2.0'
+        'appendix' : '-se22tx20'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX21','MLRS_FEATURE_OLED'],
-        'appendix' : '-se28tx2.1'
+        'appendix' : '-se28tx21'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_DE28TX21','MLRS_FEATURE_OLED'],
-        'appendix' : '-de28tx2.1'
+        'appendix' : '-de28tx21'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22TX21','MLRS_FEATURE_OLED'],
-        'appendix' : '-se22tx2.1'
+        'appendix' : '-se22tx21'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE220TX21','MLRS_FEATURE_OLED'],
-        'appendix' : '-se220tx2.1'
+        'appendix' : '-se220tx21'
     },{
-        'target' : 'tx-diy-f103cb',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE32TX21','MLRS_FEATURE_OLED'],
-        'appendix' : '-se32tx2.1'
+        'appendix' : '-se32tx21'
     },{
     
 #TX
 #-- tx bootloader
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX12','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se28tx1.2'
+        'appendix' : '-se28tx12'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX12S','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se28tx1.2s'
+        'appendix' : '-se28tx12s'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX20','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se28tx2.0'
+        'appendix' : '-se28tx20'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE220TX20','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se220tx2.0'
+        'appendix' : '-se220tx20'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22TX20','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se22tx2.0'
+        'appendix' : '-se22tx20'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX21','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se28tx2.1'
+        'appendix' : '-se28tx21'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_DE28TX21','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-de28tx2.1'
+        'appendix' : '-de28tx21'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22TX21','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se22tx2.1'
+        'appendix' : '-se22tx21'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE220TX21','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se220tx2.1'
+        'appendix' : '-se220tx21'
     },{
-        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_DIY_HIFLY_F103CB',
+        'target' : 'tx-bl-f103c8',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE32TX21','MLRS_FEATURE_OLED','MLRS_FEATURE_ELRS_BOOTLOADER'],
-        'appendix' : '-se32tx2.1'
+        'appendix' : '-se32tx21'
     }
     ]

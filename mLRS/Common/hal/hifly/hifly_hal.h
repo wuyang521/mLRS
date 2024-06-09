@@ -6,89 +6,89 @@
 //-- RX
 #ifdef RX_HIFLY_WLE5CC
 #ifdef DEVICE_NAME_SE77RX10
-#include "rx-hal-diy-hifly-e77rx1.0-wle5cc.h"
+#include "rx-hal-hifly-e77rx1.0-wle5cc.h"
 #endif
 #endif
 #ifdef RX_HIFLY_F103CB
 #ifdef DEVICE_NAME_SE19RX10
-#include "rx-hal-diy-hifly-e19rx1.0-f103cb.h"
+#include "rx-hal-hifly-e19rx1.0-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE28RX12
-#include "rx-hal-diy-hifly-e28rx1.2-f103cb.h"
+#include "rx-hal-hifly-e28rx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE22RX12
-#include "rx-hal-diy-hifly-e22rx1.2-f103cb.h"
+#include "rx-hal-hifly-e22rx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220RX12
-#include "rx-hal-diy-hifly-e22rx1.2-f103cb.h"
+#include "rx-hal-hifly-e22rx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE28RX21
-#include "rx-hal-diy-hifly-e28rx2.1-f103cb.h"
+#include "rx-hal-hifly-e28rx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_DE28RX21
-#include "rx-hal-diy-hifly-e28rx2.1-f103cb.h"
+#include "rx-hal-hifly-e28rx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE22RX21
-#include "rx-hal-diy-hifly-e22rx2.1-f103cb.h"
+#include "rx-hal-hifly-e22rx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220RX21
-#include "rx-hal-diy-hifly-e22rx2.1-f103cb.h"
+#include "rx-hal-hifly-e22rx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE32RX21
-#include "rx-hal-diy-hifly-e32rx2.1-f103cb.h"
+#include "rx-hal-hifly-e32rx2.1-f103cb.h"
 #endif
 #endif
 
 //-- TX
 #ifdef TX_HIFLY_WLE5CC
 #ifdef DEVICE_NAME_SE77TX10
-#include "tx-hal-diy-hifly-e77tx1.0-wle5cc.h"
+#include "tx-hal-hifly-e77tx1.0-wle5cc.h"
 #endif
 #endif
 #ifdef TX_HIFLY_F072CB
 #ifdef DEVICE_NAME_SE22TX22
-#include "tx-hal-diy-hifly-e22tx2.2-f103cb.h"
+#include "tx-hal-hifly-e22tx2.2-f103cb.h"
 #endif
 #endif
 #ifdef TX_HIFLY_F103CB
 #ifdef DEVICE_NAME_SE28TX12
-#include "tx-hal-diy-hifly-e28tx1.2-f103cb.h"
+#include "tx-hal-hifly-e28tx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE28TX12S
-#include "tx-hal-diy-hifly-e28tx1.2-f103cb.h"
+#include "tx-hal-hifly-e28tx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220TX12
-#include "tx-hal-diy-hifly-e22tx1.2-f103cb.h"
+#include "tx-hal-hifly-e22tx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220TX12S
-#include "tx-hal-diy-hifly-e22tx1.2-f103cb.h"
+#include "tx-hal-hifly-e22tx1.2-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE28TX20
-#include "tx-hal-diy-hifly-e28tx2.0-f103cb.h"
+#include "tx-hal-hifly-e28tx2.0-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE22TX20
-#include "tx-hal-diy-hifly-e22tx2.0-f103cb.h"
+#include "tx-hal-hifly-e22tx2.0-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220TX20
-#include "tx-hal-diy-hifly-e22tx2.0-f103cb.h"
+#include "tx-hal-hifly-e22tx2.0-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE28TX21
-#include "tx-hal-diy-hifly-e28tx2.1-f103cb.h"
+#include "tx-hal-hifly-e28tx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_DE28TX21
-#include "tx-hal-diy-hifly-e28tx2.1-f103cb.h"
+#include "tx-hal-hifly-e28tx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE22TX21
-#include "tx-hal-diy-hifly-e22tx2.1-f103cb.h"
+#include "tx-hal-hifly-e22tx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE220TX21
-#include "tx-hal-diy-hifly-e22tx2.1-f103cb.h"
+#include "tx-hal-hifly-e22tx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE32TX21
-#include "tx-hal-diy-hifly-e32tx2.1-f103cb.h"
+#include "tx-hal-hifly-e32tx2.1-f103cb.h"
 #endif
 #ifdef DEVICE_NAME_SE22TX22
-#include "tx-hal-diy-hifly-e22tx2.2-f103cb.h"
+#include "tx-hal-hifly-e22tx2.2-f103cb.h"
 #endif
 #endif
 
