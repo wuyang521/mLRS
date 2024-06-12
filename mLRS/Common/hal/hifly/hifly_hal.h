@@ -90,6 +90,9 @@
 #ifdef DEVICE_NAME_SE22TX22
 #include "tx-hal-hifly-e22tx2.2-f103cb.h"
 #endif
+#ifdef DEVICE_NAME_XLITE_SE28TX22
+#include "tx-hal-xlite-e28tx2.2-f103cb.h"
+#endif
 #endif
 
 #endif
