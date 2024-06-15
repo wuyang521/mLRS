@@ -11,10 +11,8 @@
 // TX DIY HIFLY-DE28 v2.0 STM32F103CB
 //-------------------------------------------------------
 #define DEVICE_HAS_SERIAL_OR_COM
-//#define DEVICE_HAS_NO_COM
 #define DEVICE_HAS_JRPIN5 // requires diode from Tx to Rx soldered on the board
 #define DEVICE_HAS_BUZZER
-//#define DEVICE_HAS_FAN_ONOFF
 
 //-- Timers, Timing, EEPROM, and such stuff
 
@@ -170,13 +168,13 @@ void in_set_inverted(void)
 
 void button_init(void)
 {
-    // gpio_init(BUTTON, IO_MODE_INPUT_PU, IO_SPEED_DEFAULT);
+    gpio_init(BUTTON, IO_MODE_INPUT_PU, IO_SPEED_DEFAULT);
 }
 
 bool button_pressed(void)
 {
     return 0;
-    // return gpio_read_activelow(BUTTON);
+    return gpio_read_activelow(BUTTON);
 }
 
 //-- LEDs
@@ -202,20 +200,19 @@ void led_red_toggle(void) { gpio_toggle(LED_RED); }
 
 
 //-- Serial or Com Switch
-// the dips are on the same gpios as the LEDs ! so we need to play dirty tricks
+// use com if BUTTON is pressed during power up, else use serial
+// BUTTON becomes bind button later on
 
-bool xlite_ser_or_com_serial = false;  // we use com as default
+bool xlite_ser_or_com_serial = true; // we use serial as default
 
 void ser_or_com_init(void)
 {
-    gpio_init(BUTTON, IO_MODE_INPUT_PU, IO_SPEED_SLOW);
+    gpio_init(BUTTON, IO_MODE_INPUT_PU, IO_SPEED_DEFAULT);
     uint8_t cnt = 0;
     for (uint8_t i = 0; i < 16; i++) {
         if (gpio_read_activelow(BUTTON)) cnt++;
     }
-    xlite_ser_or_com_serial = (cnt > 8);
-    gpio_init(LED_GREEN, IO_MODE_OUTPUT_PP_LOW, IO_SPEED_DEFAULT);
-    led_green_off(); // LED_GREEN_OFF
+    xlite_ser_or_com_serial = !(cnt > 8);
 }
 
 bool ser_or_com_serial(void)
