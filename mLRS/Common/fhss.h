@@ -31,8 +31,8 @@
 #ifdef FREQUENCY_BAND_70_CM_HAM
   #define FHSS_HAS_CONFIG_70_CM_HAM
 #endif
-#ifdef FREQUENCY_BAND_868_MHZ
-  #define FHSS_HAS_CONFIG_868_MHZ
+#ifdef FREQUENCY_BAND_700_MHZ
+  #define FHSS_HAS_CONFIG_700_MHZ
 #endif
 #ifdef FREQUENCY_BAND_915_MHZ_FCC
   #define FHSS_HAS_CONFIG_915_MHZ_FCC
@@ -117,28 +117,57 @@ const uint8_t fhss_bind_channel_list_70_cm_ham[] = {
 };
 
 #endif
-#ifdef FHSS_HAS_CONFIG_868_MHZ
+#ifdef FHSS_HAS_CONFIG_700_MHZ
 // 863.275 ... 869.575  in 0.525 MHz steps
 
 const uint32_t fhss_freq_list_868[] = {
-    SX12XX_FREQ_MHZ_TO_REG(863.275),
-    SX12XX_FREQ_MHZ_TO_REG(863.800),
-    SX12XX_FREQ_MHZ_TO_REG(864.325),
-    SX12XX_FREQ_MHZ_TO_REG(864.850),
-    SX12XX_FREQ_MHZ_TO_REG(865.375),
-    SX12XX_FREQ_MHZ_TO_REG(865.900),
-    SX12XX_FREQ_MHZ_TO_REG(866.425),
-    SX12XX_FREQ_MHZ_TO_REG(866.950),
-    SX12XX_FREQ_MHZ_TO_REG(867.475),
-    SX12XX_FREQ_MHZ_TO_REG(868.000),
+		SX12XX_FREQ_MHZ_TO_REG(700.0),
+		SX12XX_FREQ_MHZ_TO_REG(701.2),
+		SX12XX_FREQ_MHZ_TO_REG(702.4),
+		SX12XX_FREQ_MHZ_TO_REG(703.6),
+		SX12XX_FREQ_MHZ_TO_REG(704.8),
+		SX12XX_FREQ_MHZ_TO_REG(706.0),
+		SX12XX_FREQ_MHZ_TO_REG(707.2),
+		SX12XX_FREQ_MHZ_TO_REG(708.4),
+		SX12XX_FREQ_MHZ_TO_REG(709.6),
+		SX12XX_FREQ_MHZ_TO_REG(710.8),
 
-    // SX12XX_FREQ_MHZ_TO_REG(868.525), // overlap with Alarmanlagen
-    // SX12XX_FREQ_MHZ_TO_REG(869.050), // overlap with Alarmanlagen
-    // SX12XX_FREQ_MHZ_TO_REG(869.575), // overlap with Alarmanlagen
+		SX12XX_FREQ_MHZ_TO_REG(712.0),
+		SX12XX_FREQ_MHZ_TO_REG(713.2),
+		SX12XX_FREQ_MHZ_TO_REG(714.4),
+		SX12XX_FREQ_MHZ_TO_REG(715.6),
+		SX12XX_FREQ_MHZ_TO_REG(716.8),
+		SX12XX_FREQ_MHZ_TO_REG(718.0),
+		SX12XX_FREQ_MHZ_TO_REG(719.2),
+		SX12XX_FREQ_MHZ_TO_REG(720.4),
+		SX12XX_FREQ_MHZ_TO_REG(721.6),
+		SX12XX_FREQ_MHZ_TO_REG(722.8),
+
+		SX12XX_FREQ_MHZ_TO_REG(724.0),
+		SX12XX_FREQ_MHZ_TO_REG(725.2),
+		SX12XX_FREQ_MHZ_TO_REG(726.4),
+		SX12XX_FREQ_MHZ_TO_REG(727.6),
+		SX12XX_FREQ_MHZ_TO_REG(728.8),
+		SX12XX_FREQ_MHZ_TO_REG(730.0),
+		SX12XX_FREQ_MHZ_TO_REG(731.2),
+		SX12XX_FREQ_MHZ_TO_REG(732.4),
+		SX12XX_FREQ_MHZ_TO_REG(733.6),
+		SX12XX_FREQ_MHZ_TO_REG(734.8),
+
+		SX12XX_FREQ_MHZ_TO_REG(736.0),
+		SX12XX_FREQ_MHZ_TO_REG(737.2),
+		SX12XX_FREQ_MHZ_TO_REG(738.4),
+		SX12XX_FREQ_MHZ_TO_REG(739.6),
+		SX12XX_FREQ_MHZ_TO_REG(740.8),
+		SX12XX_FREQ_MHZ_TO_REG(742.0),
+		SX12XX_FREQ_MHZ_TO_REG(743.2),
+		SX12XX_FREQ_MHZ_TO_REG(744.4),
+		SX12XX_FREQ_MHZ_TO_REG(745.6),
+		SX12XX_FREQ_MHZ_TO_REG(746.8),
 };
 
 const uint8_t fhss_bind_channel_list_868[] = {
-    0, // just pick some
+    10, // just pick some
 };
 
 #endif
@@ -324,7 +353,7 @@ const uint8_t fhss_bind_channel_list_2p4[] = {
 typedef enum {
     FHSS_CONFIG_2P4_GHZ = 0,
     FHSS_CONFIG_915_MHZ_FCC,
-    FHSS_CONFIG_868_MHZ,
+    FHSS_CONFIG_700_MHZ,
     FHSS_CONFIG_866_MHZ_IN,
     FHSS_CONFIG_433_MHZ,
     FHSS_CONFIG_70_CM_HAM,
@@ -380,7 +409,7 @@ const tFhssConfig fhss_config[] = {
 #else
     { .freq_list = nullptr },
 #endif
-#ifdef FHSS_HAS_CONFIG_868_MHZ
+#ifdef FHSS_HAS_CONFIG_700_MHZ
     {
         .freq_list = fhss_freq_list_868,
         .freq_list_len = (uint8_t)(sizeof(fhss_freq_list_868) / sizeof(uint32_t)),
@@ -433,7 +462,7 @@ class tFhssBase
         switch (frequency_band) {
         case SETUP_FREQUENCY_BAND_2P4_GHZ: config_i = FHSS_CONFIG_2P4_GHZ; break;
         case SETUP_FREQUENCY_BAND_915_MHZ_FCC: config_i = FHSS_CONFIG_915_MHZ_FCC; break;
-        case SETUP_FREQUENCY_BAND_868_MHZ: config_i = FHSS_CONFIG_868_MHZ; break;
+        case SETUP_FREQUENCY_BAND_700_MHZ: config_i = FHSS_CONFIG_700_MHZ; break;
         case SETUP_FREQUENCY_BAND_866_MHZ_IN: config_i = FHSS_CONFIG_866_MHZ_IN; break;
         case SETUP_FREQUENCY_BAND_433_MHZ: config_i = FHSS_CONFIG_433_MHZ; break;
         case SETUP_FREQUENCY_BAND_70_CM_HAM: config_i = FHSS_CONFIG_70_CM_HAM; break;
@@ -452,7 +481,7 @@ class tFhssBase
         bind_scan_mask = 0;
         if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_2P4_GHZ)) bind_scan_mask |= (1 << FHSS_CONFIG_2P4_GHZ);
         if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_915_MHZ_FCC)) bind_scan_mask |= (1 << FHSS_CONFIG_915_MHZ_FCC);
-        if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_868_MHZ)) bind_scan_mask |= (1 << FHSS_CONFIG_868_MHZ);
+        if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_700_MHZ)) bind_scan_mask |= (1 << FHSS_CONFIG_700_MHZ);
         if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_866_MHZ_IN)) bind_scan_mask |= (1 << FHSS_CONFIG_866_MHZ_IN);
         if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_433_MHZ)) bind_scan_mask |= (1 << FHSS_CONFIG_433_MHZ);
         if (fb_allowed_mask & (1 << SETUP_FREQUENCY_BAND_70_CM_HAM)) bind_scan_mask |= (1 << FHSS_CONFIG_70_CM_HAM);
@@ -515,7 +544,7 @@ class tFhssBase
             }
             generate_ortho_except(seed, ortho, EXCEPT_NONE);
             break;
-        case FHSS_CONFIG_868_MHZ:
+        case FHSS_CONFIG_700_MHZ:
         case FHSS_CONFIG_866_MHZ_IN:
         case FHSS_CONFIG_433_MHZ:
             generate(seed);
@@ -600,7 +629,7 @@ class tFhssBase
         switch (curr_bind_config_i) {
         case FHSS_CONFIG_2P4_GHZ: return SETUP_FREQUENCY_BAND_2P4_GHZ;
         case FHSS_CONFIG_915_MHZ_FCC: return SETUP_FREQUENCY_BAND_915_MHZ_FCC;
-        case FHSS_CONFIG_868_MHZ: return SETUP_FREQUENCY_BAND_868_MHZ;
+        case FHSS_CONFIG_700_MHZ: return SETUP_FREQUENCY_BAND_700_MHZ;
         case FHSS_CONFIG_866_MHZ_IN: return SETUP_FREQUENCY_BAND_866_MHZ_IN;
         case FHSS_CONFIG_433_MHZ: return SETUP_FREQUENCY_BAND_433_MHZ;
         case FHSS_CONFIG_70_CM_HAM: return SETUP_FREQUENCY_BAND_70_CM_HAM;

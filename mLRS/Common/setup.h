@@ -29,23 +29,23 @@ void setup_configure_metadata(void)
     SetupMetaData = {};
 
     //-- FrequencyBand: "2.4,915 FCC,868,433,70,866 IN"
-#if defined FREQUENCY_BAND_2P4_GHZ && defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ
+#if defined FREQUENCY_BAND_2P4_GHZ && defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ
     // DUALBAND!
     SetupMetaData.FrequencyBand_allowed_mask = 0b000110; // 915 FCC, 868
 #elif defined FREQUENCY_BAND_2P4_GHZ
     SetupMetaData.FrequencyBand_allowed_mask = 0b000001; // only 2.4 GHz, not editable
-#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ && \
+#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ && \
       defined FREQUENCY_BAND_433_MHZ && defined FREQUENCY_BAND_70_CM_HAM
     SetupMetaData.FrequencyBand_allowed_mask = 0b011110; // 915 FCC, 868, 433, 70
-#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ && defined FREQUENCY_BAND_866_MHZ_IN
+#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ && defined FREQUENCY_BAND_866_MHZ_IN
     SetupMetaData.FrequencyBand_allowed_mask = 0b100110; // 915 FCC, 868, 866 IN
-#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ
+#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ
     SetupMetaData.FrequencyBand_allowed_mask = 0b000110; // 915 FCC, 868
 #elif defined FREQUENCY_BAND_433_MHZ && defined FREQUENCY_BAND_70_CM_HAM
     SetupMetaData.FrequencyBand_allowed_mask = 0b011000; // 433, 70
 #elif defined FREQUENCY_BAND_915_MHZ_FCC
     SetupMetaData.FrequencyBand_allowed_mask = 0b000010; // only 915 MHz FCC, not editable
-#elif defined FREQUENCY_BAND_868_MHZ
+#elif defined FREQUENCY_BAND_700_MHZ
     SetupMetaData.FrequencyBand_allowed_mask = 0b000100; // only 868 MHz, not editable
 #elif defined FREQUENCY_BAND_433_MHZ
     SetupMetaData.FrequencyBand_allowed_mask = 0b001000; // only 433 MHz, not editable
@@ -283,20 +283,20 @@ void setup_sanitize_config(uint8_t config_id)
     setup_default_bindphrase(bind_phrase, config_id, BIND_PHRASE);
     sanitize_bindphrase(Setup.Common[config_id].BindPhrase, bind_phrase);
 
-#if defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ && defined FREQUENCY_BAND_2P4_GHZ
+#if defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ && defined FREQUENCY_BAND_2P4_GHZ
     // DUALBAND 868/915 MHz & 2.4 GHz!
-    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_868_MHZ;
-#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ && defined FREQUENCY_BAND_433_MHZ
+    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_700_MHZ;
+#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ && defined FREQUENCY_BAND_433_MHZ
     // DUALBAND 868/915 MHz & 433 MHz!
-    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_868_MHZ;
+    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_700_MHZ;
 #elif defined FREQUENCY_BAND_2P4_GHZ
     uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_2P4_GHZ;
-#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_868_MHZ
-    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_868_MHZ; // my privilege to be in the EU :)
+#elif defined FREQUENCY_BAND_915_MHZ_FCC && defined FREQUENCY_BAND_700_MHZ
+    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_700_MHZ; // my privilege to be in the EU :)
 #elif defined FREQUENCY_BAND_915_MHZ_FCC
     uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_915_MHZ_FCC;
-#elif defined FREQUENCY_BAND_868_MHZ
-    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_868_MHZ;
+#elif defined FREQUENCY_BAND_700_MHZ
+    uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_700_MHZ;
 #elif defined FREQUENCY_BAND_433_MHZ
     uint8_t frequency_band_default = SETUP_FREQUENCY_BAND_433_MHZ;
 #elif defined FREQUENCY_BAND_70_CM_HAM
@@ -635,8 +635,8 @@ void setup_configure_config(uint8_t config_id)
     case SETUP_FREQUENCY_BAND_915_MHZ_FCC:
         Config.Fhss.Num = FHSS_NUM_BAND_915_MHZ_FCC;
         break;
-    case SETUP_FREQUENCY_BAND_868_MHZ:
-        Config.Fhss.Num = FHSS_NUM_BAND_868_MHZ;
+    case SETUP_FREQUENCY_BAND_700_MHZ:
+        Config.Fhss.Num = FHSS_NUM_BAND_700_MHZ;
         break;
     case SETUP_FREQUENCY_BAND_433_MHZ:
         Config.Fhss.Num = FHSS_NUM_BAND_433_MHZ;

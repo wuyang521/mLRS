@@ -18,7 +18,7 @@ Note: A device may support multiple frequency bands.
 Available RF band defines:
 
 #define FREQUENCY_BAND_2P4_GHZ
-#define FREQUENCY_BAND_868_MHZ
+#define FREQUENCY_BAND_700_MHZ
 #define FREQUENCY_BAND_915_MHZ_FCC
 #define FREQUENCY_BAND_866_MHZ_IN
 #define FREQUENCY_BAND_433_MHZ
@@ -37,7 +37,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9MX"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -46,7 +46,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9M"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -55,7 +55,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9MM"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -64,7 +64,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9MLitePro"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -74,7 +74,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9M"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -83,7 +83,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "Frsky R9MX"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX127x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -95,7 +95,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "WioE5 Grove WLE5JC"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -104,7 +104,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "WioE5 Mini WLE5JC"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -114,7 +114,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "WioE5 Mini WLE5JC"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -126,7 +126,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "E77 MBL Kit WLE5CC"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
   //#define FREQUENCY_BAND_433_MHZ
@@ -137,7 +137,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "E77 MBL Kit WLE5CC"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
   //#define FREQUENCY_BAND_433_MHZ
@@ -228,7 +228,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E22 G441KB"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -237,7 +237,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E22 G431KB"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -246,7 +246,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY DualE22 G491RE"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -256,7 +256,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY WioE5 E22"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -265,7 +265,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY WioE5 E22"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
 #endif
@@ -277,7 +277,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E22"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   //#define FREQUENCY_BAND_866_MHZ_IN
   //#define FREQUENCY_BAND_433_MHZ
@@ -288,7 +288,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E22"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_SX126x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
 #endif
 
@@ -297,7 +297,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E28 DualBand"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_DUAL_SX126x_SX128x // implies sx = SX126x and sx2 = SX128x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   #define FREQUENCY_BAND_2P4_GHZ
 #endif
@@ -306,7 +306,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E28 DualBand"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_DUAL_SX126x_SX128x // implies sx = SX126x and sx2 = SX128x
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   #define FREQUENCY_BAND_2P4_GHZ
 #endif
@@ -316,7 +316,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E22 DualBand"
   #define DEVICE_IS_RECEIVER
   #define DEVICE_HAS_DUAL_SX126x_SX126x // implies sx = SX126x @ 868/915 MHz and sx2 = SX126x @ 400 MHz
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   #define FREQUENCY_BAND_433_MHZ // only one 400 MHz option can be chosen
 #endif
@@ -325,7 +325,7 @@ The default selection of frequency bands can be overruled by feature defines.
   #define DEVICE_NAME "DIY E77 E22 DualBand"
   #define DEVICE_IS_TRANSMITTER
   #define DEVICE_HAS_DUAL_SX126x_SX126x // implies sx = SX126x @ 868/915 MHz and sx2 = SX126x @ 400 MHz
-  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_700_MHZ
   #define FREQUENCY_BAND_915_MHZ_FCC
   #define FREQUENCY_BAND_433_MHZ // only one 400 MHz option can be chosen
 #endif
@@ -346,16 +346,16 @@ The default selection of frequency bands can be overruled by feature defines.
 // should go somewhere else !?
 
 #if defined MLRS_FEATURE_433_MHZ || defined MLRS_FEATURE_70_CM || \
-    defined MLRS_FEATURE_868_MHZ || defined MLRS_FEATURE_915_MHZ_FCC || defined MLRS_FEATURE_866_MHZ_IN
+    defined MLRS_FEATURE_700_MHZ || defined MLRS_FEATURE_915_MHZ_FCC || defined MLRS_FEATURE_866_MHZ_IN
 
-  #undef FREQUENCY_BAND_868_MHZ
+  #undef FREQUENCY_BAND_700_MHZ
   #undef FREQUENCY_BAND_915_MHZ_FCC
   #undef FREQUENCY_BAND_866_MHZ_IN
   #undef FREQUENCY_BAND_433_MHZ
   #undef FREQUENCY_BAND_70_CM_HAM
 
-  #ifdef MLRS_FEATURE_868_MHZ
-    #define FREQUENCY_BAND_868_MHZ
+  #ifdef MLRS_FEATURE_700_MHZ
+    #define FREQUENCY_BAND_700_MHZ
   #endif
   #ifdef MLRS_FEATURE_915_MHZ_FCC
     #define FREQUENCY_BAND_915_MHZ_FCC

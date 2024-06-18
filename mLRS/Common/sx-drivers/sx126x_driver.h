@@ -228,7 +228,7 @@ class Sx126xDriverCommon : public Sx126xDriverBase
         // default for SX1268 (E22/E77-400) is 470 to 510 MHz
         switch (gconfig->FrequencyBand) {
             case SETUP_FREQUENCY_BAND_915_MHZ_FCC: CalibrateImage(SX126X_CAL_IMG_902_MHZ_1, SX126X_CAL_IMG_902_MHZ_2); break;
-            case SETUP_FREQUENCY_BAND_868_MHZ: CalibrateImage(SX126X_CAL_IMG_863_MHZ_1, SX126X_CAL_IMG_863_MHZ_2); break;
+            case SETUP_FREQUENCY_BAND_700_MHZ: CalibrateImage(SX126X_CAL_IMG_779_MHZ_1, SX126X_CAL_IMG_779_MHZ_2); break;
             case SETUP_FREQUENCY_BAND_866_MHZ_IN: CalibrateImage(SX126X_CAL_IMG_863_MHZ_1, SX126X_CAL_IMG_863_MHZ_2); break;
             case SETUP_FREQUENCY_BAND_433_MHZ: CalibrateImage(SX126X_CAL_IMG_430_MHZ_1, SX126X_CAL_IMG_430_MHZ_2); break;
             case SETUP_FREQUENCY_BAND_70_CM_HAM: CalibrateImage(SX126X_CAL_IMG_430_MHZ_1, SX126X_CAL_IMG_430_MHZ_2); break;
