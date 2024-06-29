@@ -9,7 +9,7 @@
 //-------------------------------------------------------
 // DIY hardware browsing https://github.com/Hifly-rc/mlrs-elrs-Compatible-hardware
 //-------------------------------------------------------
-#define DEVICE_NAME_SE77RX10
+//#define DEVICE_NAME_SE77RX10
 //#define DEVICE_NAME_SE77TX10
 //#define DEVICE_NAME_SE22RX21
 //#define DEVICE_NAME_SE28TX12
@@ -18,7 +18,7 @@
 //#define DEVICE_NAME_SE28TX21
 //#define DEVICE_NAME_SE32TX21
 //#define MLRS_FEATURE_OLED
-//#define DEVICE_NAME_SE22TX22
+#define DEVICE_NAME_SE22TX22
 //#define DEVICE_HAS_DIVERSITY
 //#define DEVICE_NAME_XLITE_SE28TX22
 
