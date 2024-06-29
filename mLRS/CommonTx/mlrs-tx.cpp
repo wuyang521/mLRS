@@ -28,6 +28,41 @@
 #include "../Common/common_conf.h"
 #include "../Common/common_types.h"
 
+#if defined ESP8266 || defined ESP32
+
+#include "../Common/hal/esp-glue.h"
+#include "../modules/stm32ll-lib/src/stdstm32.h"
+#include "../Common/esp-lib/esp-peripherals.h"
+#include "../Common/esp-lib/esp-mcu.h"
+//xx #include "../Common/esp-lib/esp-adc.h"
+#include "../Common/esp-lib/esp-stack.h"
+#include "../Common/hal/hal.h"
+#include "../Common/esp-lib/esp-delay.h" // these are dependent on hal
+#include "../Common/esp-lib/esp-eeprom.h"
+#include "../Common/esp-lib/esp-spi.h"
+#if defined USE_SERIAL && !defined DEVICE_HAS_SERIAL_ON_USB
+#include "../Common/esp-lib/esp-uartb.h"
+#endif
+#if defined USE_COM && !defined DEVICE_HAS_COM_ON_USB
+#include "../Common/esp-lib/esp-uartc.h"
+#endif
+#ifdef USE_SERIAL2
+#include "../Common/esp-lib/esp-uartd.h"
+#endif
+#ifdef USE_DEBUG
+#ifdef DEVICE_HAS_DEBUG_SWUART
+#include "../Common/esp-lib/esp-uart-sw.h"
+#else
+#include "../Common/esp-lib/esp-uartf.h"
+#endif
+#endif
+#ifdef USE_I2C
+#include "../Common/esp-lib/esp-i2c.h"
+#endif
+#include "../Common/hal/esp-timer.h"
+
+#else
+
 #include "../Common/hal/glue.h"
 #include "../modules/stm32ll-lib/src/stdstm32.h"
 #include "../modules/stm32ll-lib/src/stdstm32-peripherals.h"
@@ -68,12 +103,15 @@
 #endif
 #include "../Common/hal/timer.h"
 
+#endif //#if defined ESP8266 || defined ESP32
+
 #include "../Common/sx-drivers/sx12xx.h"
 #include "../Common/mavlink/fmav.h"
 #include "../Common/setup.h"
 #include "../Common/common.h"
 #include "../Common/channel_order.h"
 #include "../Common/diversity.h"
+#include "../Common/arq.h"
 //#include "../Common/test.h" // un-comment if you want to compile for board test
 
 #include "config_id.h"
@@ -85,6 +123,7 @@
 
 tRDiversity rdiversity;
 tTDiversity tdiversity;
+tReceiveArq rarq;
 tChannelOrder channelOrder(tChannelOrder::DIRECTION_TX_TO_MLRS);
 tConfigId config_id;
 tTxCli cli;
@@ -438,7 +477,7 @@ uint8_t payload_len = 0;
 
     tFrameStats frame_stats;
     frame_stats.seq_no = stats.transmit_seq_no;
-    frame_stats.ack = 1;
+    frame_stats.ack = rarq.AckSeqNo();
     frame_stats.antenna = stats.last_antenna;
     frame_stats.transmit_antenna = antenna;
     frame_stats.rssi = stats.GetLastRssi();
@@ -455,14 +494,21 @@ uint8_t payload_len = 0;
 
 void process_received_frame(bool do_payload, tRxFrame* frame)
 {
+    bool accept_payload = rarq.AcceptPayload();
+
     stats.received_antenna = frame->status.antenna;
     stats.received_transmit_antenna = frame->status.transmit_antenna;
     stats.received_rssi = rssi_i8_from_u7(frame->status.rssi_u7);
     stats.received_LQ_rc = frame->status.LQ_rc;
     stats.received_LQ_serial = frame->status.LQ_serial;
 
-    if (!do_payload) return; // always true
+    if (!do_payload) {
+        return;
+    }
 
+    if (!accept_payload) return; // frame has no fresh payload
+
+    // handle cmd frame
     if (frame->status.frame_type == FRAME_TYPE_TX_RX_CMD) {
         process_received_rxcmdframe(frame);
         return;
@@ -505,8 +551,20 @@ tRxFrame* frame;
         FAIL_WSTATE(BLINK_4, "rx_status failure", 0,0, link_rx1_status, link_rx2_status);
     }
 
+    // receive ARQ, must come before process_received_frame()
+    if (rx_status == RX_STATUS_VALID) {
+        rarq.Received(frame->status.seq_no);
+    } else {
+        rarq.FrameMissed();
+    }
+    // check this before received data may be passed to parsers
+    if (rarq.FrameLost()) {
+        mavlink.FrameLost();
+    }
+
     if (rx_status > RX_STATUS_INVALID) { // RX_STATUS_VALID
-        bool do_payload = true;
+
+        bool do_payload = true; // has no rc data, so do_payload is always
 
         process_received_frame(do_payload, frame);
 
@@ -525,6 +583,7 @@ tRxFrame* frame;
 
 void handle_receive_none(void) // RX_STATUS_NONE
 {
+    rarq.FrameMissed();
 }
 
 
@@ -646,9 +705,10 @@ RESTARTCONTROLLER
     link_task_init();
     link_task_set(LINK_TASK_TX_GET_RX_SETUPDATA); // we start with wanting to get rx setup data
 
-    stats.Init(Config.LQAveragingPeriod, Config.frame_rate_hz);
+    stats.Init(Config.LQAveragingPeriod, Config.frame_rate_hz, Config.frame_rate_ms);
     rdiversity.Init();
     tdiversity.Init(Config.frame_rate_ms);
+    rarq.Init();
 
     in.Configure(Setup.Tx[Config.ConfigId].InMode);
     mavlink.Init(&serial, &mbridge, &serial2); // ports selected by SerialDestination, ChannelsSource
@@ -858,9 +918,12 @@ IF_SX2(
         }
 
         // serial data is received if !IsInBind() && RX_STATUS_VALID && !FRAME_TYPE_TX_RX_CMD && sx_serial.IsEnabled()
+        // valid_frame/frame lost logic is modified by ARQ
+#ifndef USE_ARQ
         if (!valid_frame_received) {
             mavlink.FrameLost();
         }
+#endif
 
         stats.fhss_curr_i = fhss.CurrI();
         stats.rx1_valid = (link_rx1_status > RX_STATUS_INVALID);
@@ -912,6 +975,8 @@ IF_SX2(
         link_state = LINK_STATE_TRANSMIT;
         link_rx1_status = RX_STATUS_NONE;
         link_rx2_status = RX_STATUS_NONE;
+
+        if (!connected()) rarq.Disconnected();
 
         if (connect_state == CONNECT_STATE_LISTEN) {
             link_task_reset(); // to ensure that the following set is enforced

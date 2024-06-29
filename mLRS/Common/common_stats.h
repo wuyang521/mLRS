@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include "common_conf.h"
 #include "hal/device_conf.h"
+#include "libs/filters.h"
 #include "lq_counter.h"
 #include "common_types.h"
 
@@ -27,7 +28,7 @@ extern bool connected(void);
 class tStats
 {
   public:
-    void Init(uint8_t _maverage_period, uint16_t _frame_rate_hz);
+    void Init(uint8_t _maverage_period, uint16_t _frame_rate_hz, uint16_t _frame_rate_ms);
 
     void Update1Hz(void);             // called at 1 Hz
     void Next(void);                  // called at each cycle, is called when transmit starts, or shortly after
@@ -49,6 +50,9 @@ class tStats
 #endif
     uint8_t GetLQ_serial(void);
 
+    void doMavlinkCnt(bool valid);
+    uint8_t GetMavlinkLQ(void);
+
     // statistics for our device
 
     tStatsLQ frames_received;         // number of frames received, practically not very relevant
@@ -62,6 +66,8 @@ class tStats
 
     tStatsBytes bytes_transmitted;    // retransmissions are not counted
     tStatsBytes bytes_received;       // retransmissions are not counted
+
+    tStatsMavlinkLQ mav_packets_received;   // number of MAVLink packets received
 
     // RF statistics for our device
 
@@ -82,7 +88,14 @@ class tStats
     uint8_t received_antenna;
     uint8_t received_transmit_antenna;
 
-    // seq no in the last transmitted frame
+    // statistics for ARQ, LPF filter for the number of frames with fresh payload
+
+    tLpFilter frame_cnt;
+    void cntFrameTransmitted(void);
+    void cntFrameSkipped(void);
+    int32_t GetFrameCnt(void);
+
+    // seq no in the last transmitted frame, only tx
 
     uint8_t transmit_seq_no;
 
