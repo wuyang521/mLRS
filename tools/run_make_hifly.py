@@ -971,6 +971,10 @@ TLIST = [
         'extra_D_list' : ['DEVICE_NAME_SE77RX10'],
         'appendix' : '-se77rx10'
     },{
+        'target' : 'rx-wle5cc',             'target_D' : 'RX_HIFLY_WLE5CC',
+        'extra_D_list' : ['DEVICE_NAME_SE77RX11'],
+        'appendix' : '-se77rx11'
+    },{
         'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28RX12'],
         'appendix' : '-se28rx12'
@@ -1004,6 +1008,10 @@ TLIST = [
         'target' : 'tx-wle5cc',             'target_D' : 'TX_HIFLY_WLE5CC',
         'extra_D_list' : ['DEVICE_NAME_SE77TX10'],
         'appendix' : '-se77tx10'
+    },{
+        'target' : 'tx-wle5cc',             'target_D' : 'TX_HIFLY_WLE5CC',
+        'extra_D_list' : ['DEVICE_NAME_SE77TX11'],
+        'appendix' : '-se77tx11'
     },{
         'target' : 'tx-f103cb',     'target_D' : 'TX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE28TX12'],
