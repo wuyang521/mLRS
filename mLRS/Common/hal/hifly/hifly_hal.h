@@ -16,6 +16,9 @@
 #ifdef DEVICE_NAME_SE28RX12
 #include "rx-hal-hifly-e28rx1.2-f103cb.h"
 #endif
+#ifdef DEVICE_NAME_SE28RX20
+#include "rx-hal-hifly-e28rx2.0-f103cb.h"
+#endif
 #if defined DEVICE_NAME_SE22RX12 || defined DEVICE_NAME_SE220RX12
 #include "rx-hal-hifly-e22rx1.2-f103cb.h"
 #endif

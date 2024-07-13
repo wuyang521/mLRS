@@ -15,6 +15,10 @@ TLIST = [
         'appendix' : '-se28rx12'
     },{
         'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
+        'extra_D_list' : ['DEVICE_NAME_SE28RX20'],
+        'appendix' : '-se28rx20'
+    },{
+        'target' : 'rx-f103cb',             'target_D' : 'RX_HIFLY_F103CB',
         'extra_D_list' : ['DEVICE_NAME_SE22RX12'],
         'appendix' : '-se22rx12'
     },{
