@@ -39,15 +39,15 @@
 //#define SETUP_FORCE_COMMON_CONF
 
 
-#define CPOWER                          RFPOWER_DEFAULT
-//#define CPOWER                          0 // 0: minimum power, 255: maximum power
+//#define CPOWER                          RFPOWER_DEFAULT
+#define CPOWER                          4 // 0: minimum power, 255: maximum power
 
 #define DIVERSITY                       0
 
 
 #define SETUP_TX_SERIAL_DESTINATION     0 // 0: serial port, 1: serial2 (BT/ESP) port, 2: mBridge
 
-#define SETUP_TX_CHANNELS_SOURCE        1 // 0: none, 1: Crsf (pin5), 2: In (In or pin1), 3: mBridge (pin5)
+#define SETUP_TX_CHANNELS_SOURCE        2 // 0: none, 1: Crsf (pin5), 2: In (In or pin1), 3: mBridge (pin5)
 
 #define SETUP_TX_CHANNEL_ORDER          CHANNEL_ORDER_AETR
 
@@ -68,7 +68,7 @@
 
 #define SETUP_RX_CHANNEL_ORDER          CHANNEL_ORDER_AETR
 
-#define SETUP_RX_OUT_MODE               1 // 0: OUT_CONFIG_SBUS, 1: OUT_CONFIG_CRSF, 2: OUT_CONFIG_SBUS_INVERTED
+#define SETUP_RX_OUT_MODE               0 // 0: OUT_CONFIG_SBUS, 1: OUT_CONFIG_CRSF, 2: OUT_CONFIG_SBUS_INVERTED
 
 #define SETUP_RX_FAILSAFE_MODE          0 // 0: no signal 1: low throttle, 4: CH1-CH4 center signal
 

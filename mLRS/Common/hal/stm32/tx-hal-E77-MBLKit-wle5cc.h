@@ -26,7 +26,7 @@
 #define DEVICE_HAS_IN_ON_JRPIN5_RX
 #define DEVICE_HAS_SERIAL_OR_COM // serial or com is selected by pressing BUTTON during power on
 #define DEVICE_HAS_DEBUG_SWUART
-#define DEVICE_HAS_SYSTEMBOOT
+//#define DEVICE_HAS_SYSTEMBOOT
 
 
 #ifdef MLRS_DEV_FEATURE_JRPIN5_SDIODE
@@ -53,7 +53,7 @@
 // UARTF = --
 // SWUART= debug port
 
-#define UARTB_USE_UART2_PA2PA3 // serial // PA2,PA3
+#define UARTB_USE_UART1_PB6PB7 // serial // PA2,PA3
 #define UARTB_BAUD                TX_SERIAL_BAUDRATE
 #define UARTB_USE_TX
 #define UARTB_TXBUFSIZE           TX_SERIAL_TXBUFSIZE
@@ -61,7 +61,7 @@
 #define UARTB_USE_RX
 #define UARTB_RXBUFSIZE           TX_SERIAL_RXBUFSIZE
 
-#define UARTC_USE_UART2_PA2PA3 // com USB/CLI // PA2,PA3
+#define UARTC_USE_UART1_PB6PB7  // com USB/CLI // PA2,PA3
 #define UARTC_BAUD                TX_COM_BAUDRATE
 #define UARTC_USE_TX
 #define UARTC_TXBUFSIZE           TX_COM_TXBUFSIZE
@@ -69,7 +69,7 @@
 #define UARTC_USE_RX
 #define UARTC_RXBUFSIZE           TX_COM_RXBUFSIZE
 
-#define UART_USE_UART1_PB6PB7 // JR pin5, MBridge // PB6,PB7
+#define UART_USE_UART2_PA2PA3 // JR pin5, MBridge // PB6,PB7
 #define UART_BAUD                 400000
 #define UART_USE_TX
 #define UART_TXBUFSIZE            512
@@ -86,7 +86,7 @@
 /*
 #define UARTE_USE_UART1_PB6PB7 // in port // PB7
 #define UARTE_BAUD                100000 // SBus normal baud rate, is being set later anyhow
-//#define UARTE_USE_TX
+#define UARTE_USE_TX
 //#define UARTE_TXBUFSIZE           512
 //#define UARTE_USE_TX_ISR
 #define UARTE_USE_RX
@@ -272,7 +272,7 @@ void in_set_inverted(void)
 
 //-- Button
 
-#define BUTTON                    IO_PA0
+#define BUTTON                    IO_PA1
 
 void button_init(void)
 {
@@ -288,8 +288,8 @@ bool button_pressed(void)
 
 //-- LEDs
 
-#define LED_GREEN                 IO_PB3
-#define LED_RED                   IO_PB4
+#define LED_GREEN                 IO_PB4
+#define LED_RED                   IO_PB3
 
 void leds_init(void)
 {
@@ -307,7 +307,7 @@ void led_red_toggle(void) { gpio_toggle(LED_RED); }
 
 
 //-- SystemBootLoader
-
+/*
 #define BOOT_BUTTON               IO_PA1
 
 extern "C" { void delay_ms(uint16_t ms); }
@@ -326,7 +326,7 @@ void systembootloader_init(void)
         BootLoaderInit();
     }
 }
-
+*/
 
 //-- Serial or Com Switch
 // use com if BUTTON is pressed during power up, else use serial
