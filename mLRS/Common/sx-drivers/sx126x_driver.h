@@ -163,6 +163,9 @@ class Sx126xDriverCommon : public Sx126xDriverBase
 
     void ResetToLoraConfiguration(void)
     {
+        SetStandby(SX126X_STDBY_CONFIG_STDBY_RC);
+        delay_us(1000); // seems ok without, but do it
+        SetPacketType(SX126X_PACKET_TYPE_LORA);
         SetLoraConfigurationByIndex(gconfig->LoraConfigIndex);
     }
 
@@ -359,12 +362,12 @@ class Sx126xDriverCommon : public Sx126xDriverBase
     }
 
   protected:
+    tSxGlobalConfig* gconfig;
     uint8_t osc_configuration; // "hidden" variable, TXCO 1.8 V per default, allow child access
 
   private:
     const tSxLoraConfiguration* lora_configuration;
     const tSxGfskConfiguration* gfsk_configuration;
-    tSxGlobalConfig* gconfig;
     uint8_t sx_power;
     int8_t actual_power_dbm;
 };
@@ -430,7 +433,11 @@ class Sx126xDriver : public Sx126xDriverCommon
 
     void RfPowerCalc(int8_t power_dbm, uint8_t* sx_power, int8_t* actual_power_dbm) override
     {
+#ifdef POWER_USE_DEFAULT_RFPOWER_CALC
         sx126x_rfpower_calc(power_dbm, sx_power, actual_power_dbm, POWER_GAIN_DBM, POWER_SX126X_MAX_DBM);
+#else
+        sx126x_rfpower_calc(power_dbm, sx_power, actual_power_dbm, gconfig->FrequencyBand);
+#endif
     }
 
     //-- init API functions
@@ -561,7 +568,11 @@ class Sx126xDriver2 : public Sx126xDriverCommon
 
     void RfPowerCalc(int8_t power_dbm, uint8_t* sx_power, int8_t* actual_power_dbm) override
     {
+#ifdef POWER_USE_DEFAULT_RFPOWER_CALC
         sx126x_rfpower_calc(power_dbm, sx_power, actual_power_dbm, POWER_GAIN_DBM, POWER_SX126X_MAX_DBM);
+#else
+        sx126x_rfpower_calc(power_dbm, sx_power, actual_power_dbm, gconfig->FrequencyBand);
+#endif
     }
 
     //-- init API functions

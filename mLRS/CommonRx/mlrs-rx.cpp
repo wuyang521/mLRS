@@ -5,7 +5,7 @@
 // OlliW @ www.olliw.eu
 //*******************************************************
 // mLRS RX
-//********************************************************
+//*******************************************************
 
 
 #define DBG_MAIN(x)
@@ -112,12 +112,16 @@ void clock_reset(void) { rxclock.Reset(); }
 
 
 //-------------------------------------------------------
-// MAVLink
+// MAVLink & MSP
 //-------------------------------------------------------
 
 #include "mavlink_interface_rx.h"
 
 tRxMavlink mavlink;
+
+#include "msp_interface_rx.h"
+
+tRxMsp msp;
 
 #include "sx_serial_interface_rx.h"
 
@@ -140,7 +144,6 @@ void init_hw(void)
     serial.Init();
     out.Init();
 
-    buzzer.Init();
     fan.Init();
     dbg.Init();
 
@@ -353,7 +356,7 @@ void process_received_frame(bool do_payload, tTxFrame* frame)
     // stats.received_LQ_rc = frame->status.LQ_rc; // has no vaid data in Tx frame
     stats.received_LQ_serial = frame->status.LQ_serial;
 
-    // copy rc data
+    // copy rc1 data
     if (!do_payload) {
         // copy only channels 1-4,12,13 and jump out
         rcdata_rc1_from_txframe(&rcData, frame);
@@ -408,7 +411,7 @@ tTxFrame* frame;
 
     // handle transmit ARQ
     if (rx_status > RX_STATUS_INVALID) { // RX_STATUS_CRC1_VALID, RX_STATUS_VALID: we have valid information on ack
-        tarq.Received(frame->status.ack);
+        tarq.AckReceived(frame->status.ack);
     } else {
         tarq.FrameMissed();
     }
@@ -564,6 +567,7 @@ RESTARTCONTROLLER
 
     out.Configure(Setup.Rx.OutMode);
     mavlink.Init();
+    msp.Init();
     sx_serial.Init();
     fan.SetPower(sx.RfPower_dbm());
 
@@ -586,6 +590,7 @@ INITCONTROLLER_END
         DECc(tick_1hz, SYSTICK_DELAY_MS(1000));
 
         if (!connect_occured_once) bind.AutoBind();
+        fan.Tick_ms();
 
         if (!tick_1hz) {
             dbg.puts(".");
@@ -755,6 +760,7 @@ dbg.puts(s8toBCD_s(stats.last_rssi2));*/
         // serial data is received if !IsInBind() && RX_STATUS_VALID && !FRAME_TYPE_TX_RX_CMD && connected()
         if (!valid_frame_received) {
             mavlink.FrameLost();
+            msp.FrameLost();
         }
 
         if (valid_frame_received) { // valid frame received
@@ -833,10 +839,6 @@ dbg.puts(s8toBCD_s(stats.last_rssi2));*/
             link_task_set(LINK_TASK_RX_SEND_RX_SETUPDATA);
         }
 
-        if (Setup.Rx.Buzzer == BUZZER_LOST_PACKETS && connect_occured_once && !bind.IsInBind()) {
-            if (!valid_frame_received) buzzer.BeepLP();
-        }
-
         powerup.Do();
         if (powerup.Task() == POWERUPCNT_TASK_BIND) bind.StartBind();
 
@@ -876,21 +878,24 @@ dbg.puts(s8toBCD_s(stats.last_rssi2));*/
             out.SendRcData(&rcData, frame_missed, false, stats.GetLastRssi(), stats.GetLQ_rc());
             out.SendLinkStatistics();
             mavlink.SendRcData(out.GetRcDataPtr(), frame_missed, false);
+            msp.SendRcData(out.GetRcDataPtr(), frame_missed, false);
         } else {
             if (connect_occured_once) {
                 // generally output a signal only if we had a connection at least once
                 out.SendRcData(&rcData, true, true, RSSI_MIN, 0);
                 out.SendLinkStatisticsDisconnected();
                 mavlink.SendRcData(out.GetRcDataPtr(), true, true);
+                msp.SendRcData(out.GetRcDataPtr(), true, true);
             }
         }
     }//end of if(doPostReceive2)
 
     out.Do();
 
-    //-- Do MAVLink
+    //-- Do MAVLink & MSP
 
     mavlink.Do();
+    msp.Do();
 
     //-- Store parameters
 

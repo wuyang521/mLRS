@@ -113,7 +113,7 @@ class tRxMavlink
         uint32_t texe_ms;
     } cmd_ack;
 
-    void handle_cmd_long(void);
+    void handle_msg(fmav_message_t* msg); // handle messages from the fc
     void generate_cmd_ack(void);
 
     uint8_t _buf[MAVLINK_BUF_SIZE]; // temporary working buffer, to not burden stack
@@ -233,9 +233,7 @@ void tRxMavlink::Do(void)
                 fifo_link_out.PutBuf(_buf, len);
                 bytes_parser_in = 0;
 
-                if (msg_link_out.msgid == FASTMAVLINK_MSG_ID_COMMAND_LONG) {
-                    handle_cmd_long();
-                }
+                handle_msg(&msg_link_out);
 
                 break; // give the loop a chance before handling a further message
             }
@@ -353,29 +351,30 @@ void tRxMavlink::putc(char c)
         fmav_frame_buf_to_msg(&msg_serial_out, &result, buf_link_in); // requires RESULT_OK
 
 #if MAVLINK_OPT_FAKE_PARAMFTP > 0
-#if MAVLINK_OPT_FAKE_PARAMFTP > 1
-        bool force_param_list = true;
-        switch (Config.Mode) {
-        case MODE_FLRC_111HZ: force_param_list = (Config.SerialBaudrate > 230400); break; // 230400 bps and lower is ok for mftp
-        case MODE_50HZ:
-        case MODE_FSK_50HZ: force_param_list = (Config.SerialBaudrate > 115200); break; // 115200 bps and lower is ok for mftp
-        case MODE_31HZ: force_param_list = (Config.SerialBaudrate > 57600); break; // 57600 bps and lower is ok for mftp
-        case MODE_19HZ: force_param_list = (Config.SerialBaudrate > 38400); break; // 38400 bps and lower is ok for mftp
-        }
-        if (force_param_list)
-#endif
         // if it's a mavftp call to @PARAM/param.pck we fake the url
         // this will make ArduPilot to response with a NACK:FileNotFound
         // which will make MissionPlanner (any GCS?) to fallback to normal parameter upload
         if (msg_serial_out.msgid == FASTMAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL) {
-            uint8_t target_component = msg_serial_out.payload[2];
-            uint8_t opcode = msg_serial_out.payload[6];
-            char* url = (char*)(msg_serial_out.payload + 15);
-            if (((target_component == MAV_COMP_ID_AUTOPILOT1) || (target_component == MAV_COMP_ID_ALL)) &&
-                (opcode == MAVFTP_OPCODE_OpenFileRO)) {
-                if (!strncmp(url, "@PARAM/param.pck", 16)) {
-                    url[1] = url[7] = url[13] = 'x'; // now fake it to "@xARAM/xaram.xck"
-                    fmav_msg_recalculate_crc(&msg_serial_out); // we need to recalculate CRC, requires RESULT_OK
+            bool force_param_list = true;
+#if MAVLINK_OPT_FAKE_PARAMFTP > 1
+            switch (Config.Mode) {
+            case MODE_FLRC_111HZ: force_param_list = (Config.SerialBaudrate > 230400); break; // 230400 bps and lower is ok for mftp
+            case MODE_50HZ:
+            case MODE_FSK_50HZ: force_param_list = (Config.SerialBaudrate > 115200); break; // 115200 bps and lower is ok for mftp
+            case MODE_31HZ: force_param_list = (Config.SerialBaudrate > 57600); break; // 57600 bps and lower is ok for mftp
+            case MODE_19HZ: force_param_list = (Config.SerialBaudrate > 38400); break; // 38400 bps and lower is ok for mftp
+            }
+#endif
+            if (force_param_list) {
+                uint8_t target_component = msg_serial_out.payload[2];
+                uint8_t opcode = msg_serial_out.payload[6];
+                char* url = (char*)(msg_serial_out.payload + 15);
+                if (((target_component == MAV_COMP_ID_AUTOPILOT1) || (target_component == MAV_COMP_ID_ALL)) &&
+                    (opcode == MAVFTP_OPCODE_OpenFileRO)) {
+                    if (!strncmp(url, "@PARAM/param.pck", 16)) {
+                        url[1] = url[7] = url[13] = 'x'; // now fake it to "@xARAM/xaram.xck"
+                        fmav_msg_recalculate_crc(&msg_serial_out); // we need to recalculate CRC, requires RESULT_OK
+                    }
                 }
             }
         }
@@ -902,12 +901,15 @@ void tRxMavlink::generate_cmd_ack(void)
 }
 
 
-void tRxMavlink::handle_cmd_long(void)
+// handle messages from the fc
+void tRxMavlink::handle_msg(fmav_message_t* msg)
 {
 #ifdef USE_FEATURE_MAVLINKX
 fmav_command_long_t payload;
 
-    fmav_msg_command_long_decode(&payload, &msg_link_out);
+    if (msg->msgid != FASTMAVLINK_MSG_ID_COMMAND_LONG) return;
+
+    fmav_msg_command_long_decode(&payload, msg);
 
     // check if it is for us, only allow targeted commands
     if (payload.target_system != RADIO_LINK_SYSTEM_ID) return;
@@ -925,8 +927,8 @@ fmav_command_long_t payload;
 
     inject_cmd_ack = true;
     cmd_ack.command = payload.command;
-    cmd_ack.cmd_src_sysid = msg_link_out.sysid;
-    cmd_ack.cmd_src_compid = msg_link_out.compid;
+    cmd_ack.cmd_src_sysid = msg->sysid;
+    cmd_ack.cmd_src_compid = msg->compid;
 
     bool cmd_valid = false;
     switch (payload.command) {
