@@ -17,6 +17,10 @@
 #include "rx-hal-generic-900-esp8285.h"
 #endif
 
+#ifdef RX_ELRS_GENERIC_E22_ESP8285
+#include "rx-hal-generic-e22-esp8285.h"
+#endif
+
 #ifdef RX_ELRS_GENERIC_900_PA_ESP8285
 #include "rx-hal-generic-900-pa-esp8285.h"
 #endif
